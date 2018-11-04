@@ -1,0 +1,69 @@
+﻿@model Lunch.Common.HomeModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container-fluid">
+    <!--cover images starts-->
+    <div class="row">
+        <div class="col-md-4">
+            @*<img src="~/Images/bg.png" alt="Alternate Text" height="100%"/>*@
+        </div>
+        <div class="col-md-8">
+            <div class="card bg-transparent border-0 mx-auto ">
+                <article class="card-body">
+                    <p class="my-3">Good Morning @ViewBag.UserName</p>
+
+                    <ul class="nav nav-pills nav-fill  navtop mt-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#menu1" data-toggle="tab">Lunch </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#menu2" data-toggle="tab">Transport</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-4 ">
+                        <div class="tab-pane active" role="tabpanel" id="menu1">
+                            <h5>Order Your Lunch</h5>
+                            @using (@Html.BeginForm("LunchSubmit", "Home", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <label>I want to order:</label>
+                                    @Html.DropDownList("Lunch", new SelectList(Model.Lunch), "Select Lunch", new { @class = "form-control" })
+                                </div> 
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Submit </button>
+                                </div> 
+                            }
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="menu2">
+                                <h5>Request Your Transport</h5>
+                                @using (@Html.BeginForm("TransportSubmit", "Home", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <label>I want to go:</label>
+                                        @Html.DropDownList("Goto", new SelectList(Model.Transport), "Select Place", new { @class = "form-control" })
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <label>I'm planning to leave at:</label>
+                                        @Html.DropDownList("leave", new SelectList(Model.LeaveTime), "Select Time", new { @class = "form-control" })
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block"> Submit </button>
+                                    </div> 
+                                }
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+            </div> <!-- card.// -->
+        </div>
+        
+    </div>
+</div>
